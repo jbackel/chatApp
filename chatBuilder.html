@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Backel's Chatbuilder</title>
+    <script src="http://chatbuilder.hackreactor.com/ChatBuilder.js"></script>
+  </head>
+  
+  <body>
+
+    <script>
+      Chat.guide.start();
+
+      
+    // $("ul li:first")   Selects the first <li> element of the first <ul>
+
+    /*Chat.fetch takes a function(callback) 
+      Chat.fetch passes an array or strings to the callback
+      loop through the array in the call back and pass each string to Chat.display
+      loop ex for(var i= ;  arr.length; var++ or var--)
+    */
+     
+
+
+
+     //this section hooks Chat.fetch and Chat.display, and refreshes the list---NEEDS WORK!! 
+      /*var refresh = function () {
+        Chat.fetch(function(arr) {
+          for(var i = 0; i < arr.length; i++){
+          Chat.display(arr[i])
+          }
+        })
+      };    
+      */
+
+           
+     setInterval(Chat.fetch(function(arr) {
+        for(var i = 0; i < arr.length; i++) {
+          Chat.display(arr[i])
+        }
+      }),3000); 
+      
+
+
+
+
+      //check into removing the "" from this, and also moving it into var refresh
+      /*setInterval(function(){
+        (refresh, 3000)  
+      };
+      */
+      //this section sends what is in the draft box to the server
+      
+     /* var sendInput = function () {
+        var boxInput = $('.draft').val();
+        if ($(".send").on("click") {  //possibly remove these braces and and move chat.send(boxInput()) in here!
+          Chat.send(boxInput());
+        };
+      };
+     */ 
+      
+
+
+
+/*Chat.guide(6)
+Allow the user to enter their own chat messages via the input box.
+* jQuery is provided for you--you'll need it to wire up the input box and the submit button.
+* Part of this will involve calling  jQuery()  to gather elements you want to manipulate from the page.
+* You'll want to learn a bit about CSS selectors at this point, since that's the main way to start interacting with your page elements via jQuery.
+* Once you have a jQuery array that contains the node(s) you want to operate on, you'll need to use jQuery's event handler registration methods to attach your desired behavior. 
+*/
+
+
+
+
+
+
+
+
+
+    // Determines the length of unordered list allowed
+    //  var amount = 0;
+      //$('.subnav li').each(function() {
+       //   amount++
+        //  if (amount > 15) {
+        //    $(this).destroy();
+        //  }
+     // });
+
+
+
+
+      //function uListLength() {
+       // if ($('.messages').length >= 10) {
+       //   result = $('ul li:last').empty();
+       // }
+      //}
+
+    //this section should send what is typed into the box to the server utilizing Chat.send()
+
+      
+    
+      
+      
+      
+      //document.getElementById('.draft').onclick = boxInput();;
+    
+
+      
+       
+      
+      //var boxValue = function(send) {
+       //   onclick(Chat.send);
+       // };
+    
+          
+
+
+
+
+        /* $("button").onClick (function() {
+         *  Chat.send();
+         * });
+         *    
+         *
+         * submitBox*
+         */
+
+
+      
+
+
+      
+
+
+
+      
+
+
+      /*
+       *  Nice, you found the HTML source code for ChatBuilder! This document kicks everything off when you load it
+       *  in your browser, and is a starting point for the whole app. It's pretty incomplete though--you should
+       *  make your own version of it that works better!
+       *
+       *  You can't edit the code here until it's in a file on your hard drive, so copy this whole page of source
+       *  code and paste it into a plain text editor like Sublime Text 2 (http://www.sublimetext.com/). Save it as
+       *  a `.html` file, and open that file with Google Chrome. You can now edit it however you like, and refresh
+       *  the page to see your modifications take effect on how the application runs.
+       *
+       *  Fair warning: one or more of the steps ahead could require a good amount of research to understand all
+       *  the terms and technologies mentioned. Googling words you haven't heard before is a great idea. Just be
+       *  careful not to spend too long in 'research mode' without making any forward progress on your real goal of
+       *  completing the app!
+       *
+       *  When you've got this code saved as a local file, uncomment the line of JavaScript code below and open
+       *  the new file in Google Chrome. Your next instructions will be waiting for you in the JavaScript console.
+       *  If you already know the Chrome JS development tools pretty well, feel free to skip this opening tutorial
+       *  by calling the `.start()` function on `Chat.guide` instead of `.intro()`
+       *
+       *  NOTE: Please do not publish or share any of the code associated with this challenge. We've worked really
+       *  hard to build this material and publishing solutions diminishes its effectiveness.
+       */
+
+      
+    </script>
+
+    <h2>Broken Chat</h2>
+
+    <input class="draft" type="text"/><button class="send">Send</button>
+      
+    <ul class="messages">
+     <LH>Messages From RoboGod</LH>
+      <!-- li messages go in here as they are pushed from chat.display-->
+      
+    </ul>
+
+  </body>
+</html>
