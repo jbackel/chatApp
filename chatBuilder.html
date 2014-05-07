@@ -26,15 +26,13 @@
           
           //this section replaces chat.fetch
           //something is wrong with this!!! fix it!!!
-          var fetcher = function(callBack) {
+          var fetcher = function(callback) {
             $.ajax({
               url: "https://api.parse.com/1/classes/chats?order=-createdAt", 
               //parse server url needed for chat.send also!! includes order property, remove later!?
-              type: "GET"
-              success: function(result){
-                //*****requires a callback function*****
-              };
-              error: function (err){
+              type: "GET",
+              success:  callback, 
+              error: function(err) {
                 alert("Sorry, the server is not responding!", error);
               }
             });
@@ -51,9 +49,11 @@
             }); 
             //this section ties chat.fetch, chat.display, and repeats the program every 3 seconds
             setInterval(function(){
-              fetcher(function(arr){
-                for(var i = 0; i < arr.length; i++){
-                  displayer(arr[i])
+              fetcher(function(data){
+                $('ul').empty();
+                var chats = data.results;
+                for(var i = 0; i < chats.length; i++){
+                  displayer(chats[i].text);
                 }    
               })
             }, 3000);
