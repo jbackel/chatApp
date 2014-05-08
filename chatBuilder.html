@@ -8,43 +8,68 @@
   
   <body>
 
+
+
+
     <script>
       
-      Chat.guide.start();
+      
       
       delete Chat.display;
       delete Chat.fetch;     
+      delete Chat.send;
+      console.log("Name: Josh Backel Email: jbackel86@gmail.com Github: github.com/jbackel");   
+          
+           
+         
+
+
+
+
+          //var sender rebuilds Chat.send
+          var sender = function(str) {
+            $.ajax({
+              url: "https://api.parse.com/1/classes/chats",
+              type: "POST",
+              data: JSON.stringify({text: str}),
+              success: str,
+              error: function(error) {
+                console.log("cant return data from server", error);
+              }
+            })
+          };
 
           // var displayer rebuilds Chat.display 
           var displayer = function (str) {
             if(typeof str === 'string') {
             var li = $('<li>');
             li.html(str);
-            $(li).appendTo('ul'); // adds list items to messages class unordered list
+            $(li).appendTo('ul'); //adds list items to messages class unordered list
             }
           };
           
           //this section replaces chat.fetch
-          //something is wrong with this!!! fix it!!!
           var fetcher = function(callback) {
             $.ajax({
               url: "https://api.parse.com/1/classes/chats?order=-createdAt", 
-              //parse server url needed for chat.send also!! includes order property, remove later!?
+              //parse server url needed for chat.send also!! includes order property, remove later
               type: "GET",
               success:  callback, 
-              error: function(err) {
-                alert("Sorry, the server is not responding!", error);
+              error: function(error) {
+                console.log("Sorry, the server is not responding!", error);
               }
             });
           };
           
 
-            //this section sends what is in the input box to the server (chat.send) 
+          //this section sends what is in the input box to the server (chat.send) 
           $( document ).ready(function(){ //loads this function after the rest of the html is loaded
-            $(".send").on("click", function(e){
+            $(".send").on("click",function(event){
               event.preventDefault();
-              var boxInput = $('.draft').val();
-              Chat.send(boxInput);
+              var boxInput =  $('.draft').val();
+              if(boxInput){
+                sender(Chat.username + ': ' + boxInput) //remove Chat.send, replace with var sender
+              };
               $('.draft').val(''); //clears input box after send is clicked
             }); 
             //this section ties chat.fetch, chat.display, and repeats the program every 3 seconds
@@ -58,19 +83,28 @@
               })
             }, 3000);
           });  
-
-           
-      
+          
+         
+    
        
       
     </script>
 
-    <h2>Broken Chat</h2>
+    <h2>Working Chat</h2>
 
-    <input class="draft" type="text"/><button class="send">Send</button>
-      
+    <!-- on enter submit   
+    
+    -->
+    <!-- on click submit--> 
+    <p><label for="target">Type Something:</label></p>
+    <input class="draft" type="text"/>
+    <button class="send">Send</button>
+       
+
+    
+    <p><LH>Messages From RoboGod</LH></p>
     <ul class="messages">
-     <LH>Messages From RoboGod</LH>
+     
       <!-- li messages go in here as they are pushed from chat.display-->
       
     </ul>
