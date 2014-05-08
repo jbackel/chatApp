@@ -7,24 +7,12 @@
   </head>
   
   <body>
-
-
-
-
     <script>
-      
-      
       
       delete Chat.display;
       delete Chat.fetch;     
       delete Chat.send;
       console.log("Name: Josh Backel Email: jbackel86@gmail.com Github: github.com/jbackel");   
-          
-           
-         
-
-
-
 
           //var sender rebuilds Chat.send
           var sender = function(str) {
@@ -61,7 +49,6 @@
             });
           };
           
-
           //this section sends what is in the input box to the server (chat.send) 
           $( document ).ready(function(){ //loads this function after the rest of the html is loaded
             $(".send").on("click",function(event){
@@ -72,6 +59,7 @@
               };
               $('.draft').val(''); //clears input box after send is clicked
             }); 
+            
             //this section ties chat.fetch, chat.display, and repeats the program every 3 seconds
             setInterval(function(){
               fetcher(function(data){
@@ -92,9 +80,6 @@
 
     <h2>Working Chat</h2>
 
-    <!-- on enter submit   
-    
-    -->
     <!-- on click submit--> 
     <p><label for="target">Type Something:</label></p>
     <input class="draft" type="text"/>
